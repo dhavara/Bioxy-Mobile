@@ -147,13 +147,18 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/city_input">
+        app:layout_constraintTop_toBottomOf="@+id/city_input"
+        app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFFFFF">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#000235"
-            android:hint="Kata Sandi" />
+            android:hint="Kata Sandi"
+            android:inputType="textPassword"
+            android:password="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -166,13 +171,18 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input_register">
+        app:layout_constraintTop_toBottomOf="@+id/password_input_register"
+        app:passwordToggleDrawable="@drawable/ic_baseline_remove_red_eye_24"
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="#FFFFFF">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#000235"
-            android:hint="Konfirmasi Kata Sandi" />
+            android:hint="Konfirmasi Kata Sandi"
+            android:inputType="textPassword"
+            android:password="true" />
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
