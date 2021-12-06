@@ -1,8 +1,10 @@
-package com.keld.bioxy;
+package com.keld.bioxy.view.MainView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.keld.bioxy.R;
 
 public class MainActivity extends AppCompatActivity {
 
