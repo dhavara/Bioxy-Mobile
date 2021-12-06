@@ -22,7 +22,7 @@ import com.keld.bioxy.helper.SharedPreferenceHelper;
 
 
 public class SplashFragment extends Fragment {
-    private static int splashtime = 2500;
+    private static int splashtime = 2500 ;
     private static final String TAG = "SplashFragment";
 
     public SplashFragment() {
