@@ -30,17 +30,17 @@
                 <item
                     android:id="@+id/nav_login"
                     android:icon="@drawable/ic_baseline_login_24"
-                    android:title="Shop" />
+                    android:title="Login" />
 
                 <item
                     android:id="@+id/nav_profile"
                     android:icon="@drawable/profile"
-                    android:title="Shop" />
+                    android:title="Profile" />
 
                 <item
                     android:id="@+id/nav_logout"
                     android:icon="@drawable/ic_baseline_exit_to_app_24"
-                    android:title="Shop" />
+                    android:title="Logout" />
 
             </menu>
 
