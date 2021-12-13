@@ -8,5 +8,5 @@
         android:width="200dp"/>
     <stroke android:color="@color/light" android:width="2dp"
         android:dashGap="7dp"
-        android:dashWidth="10dp"
+        android:dashWidth="10dp"/>
 </shape>
