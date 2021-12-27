@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.keld.bioxy.helper.Const;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
+import com.keld.bioxy.model.User;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -56,8 +57,12 @@ public class RetrofitService {
         return api.login(username, password);
     }
 
-    public Call<Soal> getSoal() {
-        return api.getSoal();
+    public Call<Soal> getQuiz(){
+        return api.getQuiz();
+    }
+
+    public Call<User> getUser(String code){
+        return api.getUser(code);
     }
 
     public Call<JsonObject> logout() {
