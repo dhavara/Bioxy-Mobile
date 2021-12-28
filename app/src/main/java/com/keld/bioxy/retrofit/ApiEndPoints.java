@@ -1,6 +1,7 @@
 package com.keld.bioxy.retrofit;
 
 import com.google.gson.JsonObject;
+import com.keld.bioxy.model.Difficulty;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
@@ -20,8 +21,11 @@ public interface ApiEndPoints {
     @GET("quiz")
     Call<Soal> getQuiz();
 
-    @POST("quiz/{store}")
-    Call<User> getUser(@Path("user") String code);
+    @GET("difficulty")
+    Call<Difficulty> getDifficulty();
+
+    @POST("quiz/{id}")
+    Call<User> getUser(@Path("user") int id);
 
     @POST("logout")
     Call<JsonObject> logout();

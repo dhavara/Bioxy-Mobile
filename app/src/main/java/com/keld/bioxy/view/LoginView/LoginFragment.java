@@ -2,13 +2,23 @@ package com.keld.bioxy.view.LoginView;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputLayout;
 import com.keld.bioxy.R;
+import com.keld.bioxy.helper.SharedPreferenceHelper;
+import com.keld.bioxy.view.MainView.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +26,12 @@ import com.keld.bioxy.R;
  * create an instance of this fragment.
  */
 public class LoginFragment extends Fragment {
+
+    TextInputLayout username_input_login, password_input_login;
+    Button btn_login;
+
+    private LoginViewModel loginViewModel;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -62,5 +78,53 @@ public class LoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        username_input_login = view.findViewById(R.id.username_input_login);
+        password_input_login = view.findViewById(R.id.password_input_login);
+        btn_login = view.findViewById(R.id.btn_login);
+
+        loginViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        btn_login.setOnClickListener(view1 -> {
+            if (!username_input_login.getEditText().getText().toString().isEmpty()
+                    && !password_input_login.getEditText().getText().toString().isEmpty()) {
+                String email = username_input_login.getEditText().getText().toString().trim();
+                String pass = password_input_login.getEditText().getText().toString().trim();
+                loginViewModel.login(email, pass).observe(LoginFragment.this.requireActivity(), tokenResponse -> {
+                    if (tokenResponse != null) {
+                        helper.saveAccessToken(tokenResponse.getAuthorization());
+                        NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDifficultyFragment();
+                        Navigation.findNavController(view1).navigate(actions);
+                        Toast.makeText(LoginFragment.this.requireActivity(), "Login Success", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(LoginFragment.this.requireActivity(), "Login Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }else{
+                Toast.makeText(requireActivity(), "Insert username and password", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        ((MainActivity) getActivity()).getSupportActionBar().hide();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).getSupportActionBar().hide();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((MainActivity)getActivity()).getSupportActionBar().show();
     }
 }

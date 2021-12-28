@@ -2,6 +2,7 @@ package com.keld.bioxy.retrofit;
 
 import com.google.gson.JsonObject;
 import com.keld.bioxy.helper.Const;
+import com.keld.bioxy.model.Difficulty;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
@@ -61,8 +62,12 @@ public class RetrofitService {
         return api.getQuiz();
     }
 
-    public Call<User> getUser(String code){
-        return api.getUser(code);
+    public Call<Difficulty> getDifficulty(){
+        return api.getDifficulty();
+    }
+
+    public Call<User> getUser(int id){
+        return api.getUser(id);
     }
 
     public Call<JsonObject> logout() {

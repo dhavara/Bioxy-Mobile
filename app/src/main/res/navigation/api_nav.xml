@@ -13,10 +13,57 @@
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_difficultyFragment"
+            app:destination="@id/difficultyFragment2" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.keld.bioxy.view.LoginView.LoginFragment"
         android:label="fragment_splash"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_difficultyFragment"
+            app:destination="@id/difficultyFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/difficultyFragment2"
+        android:name="com.keld.bioxy.view.QuizView.DifficultyFragment"
+        android:label="fragment_difficulty"
+        tools:layout="@layout/fragment_difficulty" >
+        <action
+            android:id="@+id/action_difficultyFragment_to_quizFragment2"
+            app:destination="@id/quizFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizFragment2"
+        android:name="com.keld.bioxy.view.QuizView.QuizFragment"
+        android:label="fragment_quiz"
+        tools:layout="@layout/fragment_quiz" >
+        <action
+            android:id="@+id/action_quizFragment2_to_quizResultFragment"
+            app:destination="@id/quizResultFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/quizResultFragment2"
+        android:name="com.keld.bioxy.view.QuizView.QuizResultFragment"
+        android:label="fragment_quiz_result"
+        tools:layout="@layout/fragment_quiz_result" />
+    <fragment
+        android:id="@+id/profileFragment2"
+        android:name="com.keld.bioxy.view.ProfileView.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment2_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_profileFragment2_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.keld.bioxy.view.ProfileView.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" />
 </navigation>

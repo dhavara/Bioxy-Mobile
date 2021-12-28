@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
 
+import com.keld.bioxy.model.Difficulty;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.User;
 import com.keld.bioxy.retrofit.RetrofitService;
@@ -55,9 +56,9 @@ public class QuizRepository {
         return listSoal;
     }
 
-    public MutableLiveData<User> getUser(String code) {
+    public MutableLiveData<User> getUser(int id) {
         final MutableLiveData<User> listUser = new MutableLiveData<>();
-        apiService.getUser(code).enqueue(new Callback<User>() {
+        apiService.getUser(id).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {

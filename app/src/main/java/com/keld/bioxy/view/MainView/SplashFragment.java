@@ -54,12 +54,12 @@ public class SplashFragment extends Fragment {
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             NavDirections action;
-//            if (helper.getAccessToken().isEmpty()){
-//                action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
-////                action = SplashFragmentDirections.actionSplashFragmentToProjectFragment2();
-//            }else{
-////                action = SplashFragmentDirections.actionSplashFragmentToProjectFragment2();
-//            }
+            if (helper.getAccessToken().isEmpty()){
+                action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
+//                action = SplashFragmentDirections.actionSplashFragmentToDifficultyFragment();
+            }else{
+                action = SplashFragmentDirections.actionSplashFragmentToDifficultyFragment();
+            }
             action = SplashFragmentDirections.actionSplashFragmentToLoginFragment();
             Navigation.findNavController(view).navigate(action);
         }, splashtime);
