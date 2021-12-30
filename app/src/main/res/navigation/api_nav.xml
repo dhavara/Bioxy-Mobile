@@ -25,6 +25,15 @@
         <action
             android:id="@+id/action_loginFragment_to_difficultyFragment"
             app:destination="@id/difficultyFragment2" />
+        <action
+            android:id="@+id/action_loginFragment_to_shopFragment"
+            app:destination="@id/shopFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_profileFragment2"
+            app:destination="@id/profileFragment2" />
+        <action
+            android:id="@+id/action_loginFragment_to_leaderboardFragment"
+            app:destination="@id/leaderboardFragment" />
     </fragment>
     <fragment
         android:id="@+id/difficultyFragment2"
@@ -66,4 +75,14 @@
         android:name="com.keld.bioxy.view.ProfileView.EditProfileFragment"
         android:label="fragment_edit_profile"
         tools:layout="@layout/fragment_edit_profile" />
+    <fragment
+        android:id="@+id/shopFragment"
+        android:name="com.keld.bioxy.view.ShopView.ShopFragment"
+        android:label="fragment_shop"
+        tools:layout="@layout/fragment_shop" />
+    <fragment
+        android:id="@+id/leaderboardFragment"
+        android:name="com.keld.bioxy.view.LeaderboardView.LeaderboardFragment"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" />
 </navigation>

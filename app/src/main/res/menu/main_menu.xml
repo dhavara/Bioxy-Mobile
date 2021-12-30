@@ -6,15 +6,15 @@
         android:icon="@drawable/ic_baseline_play_arrow_24"
         android:title="Play" />
     <item
-        android:id="@+id/shopFragment2"
+        android:id="@+id/shopFragment"
         android:icon="@drawable/ic_baseline_shopping_cart_24"
         android:title="Shop" />
     <item
-        android:id="@+id/leaderboardFragment2"
+        android:id="@+id/leaderboardFragment"
         android:icon="@drawable/ic_baseline_leaderboard_24"
         android:title="Leaderboard" />
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/profileFragment2"
         android:icon="@drawable/ic_baseline_person_24"
         android:title="Profile" />
 

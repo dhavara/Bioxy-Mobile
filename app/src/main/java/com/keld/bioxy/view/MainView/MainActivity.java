@@ -31,12 +31,12 @@ public class MainActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.bottom_nav_menu);
         navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentContainerView);
 
-        AppBarConfiguration configuration = new AppBarConfiguration.Builder(R.id.difficultyFragment2, R.id.profileFragment, R.id.leaderboardFragment2, R.id.shopFragment2).build();
+        AppBarConfiguration configuration = new AppBarConfiguration.Builder(R.id.difficultyFragment2, R.id.profileFragment2, R.id.leaderboardFragment, R.id.shopFragment).build();
         navController = navHostFragment.getNavController();
         navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
-            if (destination.getId() == R.id.difficultyFragment2 || destination.getId() == R.id.leaderboardFragment2 || destination.getId() == R.id.profileFragment || destination.getId() == R.id.shopFragment2 ){
+            if (destination.getId() == R.id.difficultyFragment2 || destination.getId() == R.id.leaderboardFragment || destination.getId() == R.id.profileFragment2 || destination.getId() == R.id.shopFragment){
                 navigationView.setVisibility(View.VISIBLE);
-                getSupportActionBar().show();
+                getSupportActionBar().hide();
             }else {
                 navigationView.setVisibility(View.GONE);
             }

@@ -10,7 +10,7 @@
         android:bottomLeftRadius="45dp"/>
     <gradient android:startColor="@color/primary_dark"
         android:endColor="@color/primary_light"
-        android:angle="25"
+        android:angle="-90"
         android:type="linear"/>
     <size android:height="270dp"
         android:width="500dp"/>
