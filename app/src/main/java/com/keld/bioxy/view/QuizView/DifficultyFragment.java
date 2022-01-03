@@ -5,14 +5,18 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.keld.bioxy.R;
+import com.keld.bioxy.model.Difficulty;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +24,8 @@ import com.keld.bioxy.R;
  * create an instance of this fragment.
  */
 public class DifficultyFragment extends Fragment {
-    Toolbar toolbar;
+    private Button btn_easy, btn_medium, btn_hard, btn_very_hard;
+    private QuizViewModel quizViewModel;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,8 +77,20 @@ public class DifficultyFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        toolbar = getActivity().findViewById(R.id.toolbar_main);
-        toolbar.setTitle("Play");
-        toolbar.setTitleTextColor(Color.WHITE);
+        btn_easy = view.findViewById(R.id.btn_easy);
+        btn_medium = view.findViewById(R.id.btn_medium);
+        btn_hard = view.findViewById(R.id.btn_hard);
+        btn_very_hard = view.findViewById(R.id.btn_very_hard);
+
+        quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
+//        quizViewModel.getDifficulties();
+        quizViewModel.getResultDifficulties().observe(getActivity(), showDifficulty);
     }
+
+    private Observer<Difficulty> showDifficulty = new Observer<Difficulty>() {
+        @Override
+        public void onChanged(Difficulty difficulty) {
+            btn_easy.setText("5");
+        }
+    };
 }

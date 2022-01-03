@@ -92,12 +92,12 @@ public class LoginFragment extends Fragment {
         btn_login.setOnClickListener(view1 -> {
             if (!username_input_login.getEditText().getText().toString().isEmpty()
                     && !password_input_login.getEditText().getText().toString().isEmpty()) {
-                String email = username_input_login.getEditText().getText().toString().trim();
+                String username = username_input_login.getEditText().getText().toString().trim();
                 String pass = password_input_login.getEditText().getText().toString().trim();
-                loginViewModel.login(email, pass).observe(LoginFragment.this.requireActivity(), tokenResponse -> {
+                loginViewModel.login(username, pass).observe(LoginFragment.this.requireActivity(), tokenResponse -> {
                     if (tokenResponse != null) {
                         helper.saveAccessToken(tokenResponse.getAuthorization());
-                        NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDifficultyFragment();
+                        NavDirections actions = LoginFragmentDirections.actionLoginFragmentToDifficultyFragment2();
                         Navigation.findNavController(view1).navigate(actions);
                         Toast.makeText(LoginFragment.this.requireActivity(), "Login Success", Toast.LENGTH_SHORT).show();
                     }else {

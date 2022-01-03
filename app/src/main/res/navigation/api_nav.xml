@@ -23,9 +23,6 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_difficultyFragment"
-            app:destination="@id/difficultyFragment2" />
-        <action
             android:id="@+id/action_loginFragment_to_shopFragment"
             app:destination="@id/shopFragment" />
         <action
@@ -34,6 +31,9 @@
         <action
             android:id="@+id/action_loginFragment_to_leaderboardFragment"
             app:destination="@id/leaderboardFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_difficultyFragment2"
+            app:destination="@id/difficultyFragment2" />
     </fragment>
     <fragment
         android:id="@+id/difficultyFragment2"

@@ -36,9 +36,9 @@ public class QuizRepository {
         }
     }
 
-    public MutableLiveData<Soal> getQuiz() {
+    public MutableLiveData<Soal> getQuiz(int id) {
         final MutableLiveData<Soal> listSoal = new MutableLiveData<>();
-        apiService.getQuiz().enqueue(new Callback<Soal>() {
+        apiService.getQuiz(id).enqueue(new Callback<Soal>() {
             @Override
             public void onResponse(Call<Soal> call, Response<Soal> response) {
                 if (response.isSuccessful()) {

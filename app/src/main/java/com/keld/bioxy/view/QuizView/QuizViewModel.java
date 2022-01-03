@@ -24,12 +24,13 @@ public class QuizViewModel extends AndroidViewModel {
 
     public void init(String token){
         quizRepository = QuizRepository.getInstance(token);
+        difficultyRepository = DifficultyRepository.getInstance(token);
     }
 
     //== Begin of view model to get Soal
     private MutableLiveData<Soal> resultQuiz = new MutableLiveData<>();
-    public void getQuiz(){
-        resultQuiz = quizRepository.getQuiz();
+    public void getQuiz(int id){
+        resultQuiz = quizRepository.getQuiz(id);
     }
     public LiveData<Soal> getResultQuiz(){
         return resultQuiz;
@@ -37,10 +38,10 @@ public class QuizViewModel extends AndroidViewModel {
 
     //==Begin of view model to get Difficulty
     private MutableLiveData<Difficulty> resultDifficulty = new MutableLiveData<>();
-    public void getDifficulty(){
-        resultDifficulty = difficultyRepository.getDifficulty();
+    public void getDifficulties(){
+        resultDifficulty = difficultyRepository.getDifficulties();
     }
-    public LiveData<Difficulty> getResultDifficulty(){return resultDifficulty;}
+    public LiveData<Difficulty> getResultDifficulties(){return resultDifficulty;}
 
     //==Begin of view model to Store Quiz Result
     private MutableLiveData<User> resultUser = new MutableLiveData<>();

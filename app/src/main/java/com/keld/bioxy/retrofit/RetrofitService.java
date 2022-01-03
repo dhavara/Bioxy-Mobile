@@ -58,12 +58,12 @@ public class RetrofitService {
         return api.login(username, password);
     }
 
-    public Call<Soal> getQuiz(){
-        return api.getQuiz();
+    public Call<Soal> getQuiz(int id){
+        return api.getQuiz(id);
     }
 
-    public Call<Difficulty> getDifficulty(){
-        return api.getDifficulty();
+    public Call<Difficulty> getDifficulties(){
+        return api.getDifficulties();
     }
 
     public Call<User> getUser(int id){

@@ -18,14 +18,14 @@ public interface ApiEndPoints {
     @FormUrlEncoded
     Call<TokenResponse> login(@Field("username") String username, @Field("password") String password);
 
-    @GET("quiz")
-    Call<Soal> getQuiz();
-
     @GET("difficulty")
-    Call<Difficulty> getDifficulty();
+    Call<Difficulty> getDifficulties();
 
-    @POST("quiz/{id}")
-    Call<User> getUser(@Path("user") int id);
+    @GET("quiz/{id}")
+    Call<Soal> getQuiz(@Path("id") int id); //id difficulty
+
+    @GET("user/{id}")
+    Call<User> getUser (@Path("id") int id); //id user
 
     @POST("logout")
     Call<JsonObject> logout();
