@@ -1,25 +1,28 @@
 package com.keld.bioxy.view.ProfileView;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.keld.bioxy.R;
 import com.keld.bioxy.helper.SharedPreferenceHelper;
+import com.keld.bioxy.model.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +31,8 @@ import com.keld.bioxy.helper.SharedPreferenceHelper;
  */
 public class ProfileFragment extends Fragment {
     Button btn_profile_edit, btn_profile_logout;
-    Toolbar toolbar;
+    TextView tv_input_username, tv_input_name, tv_input_email, tv_input_school, tv_input_city, tv_input_birthdate;
+    ImageView img_profile;
 
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
@@ -83,13 +87,20 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        toolbar = getActivity().findViewById(R.id.toolbar_main);
-        toolbar.setTitle("Profiles");
-        toolbar.setTitleTextColor(Color.WHITE);
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
+
+        tv_input_username = view.findViewById(R.id.tv_input_username);
+        tv_input_name = view.findViewById(R.id.tv_input_name);
+        tv_input_email = view.findViewById(R.id.tv_input_email);
+        tv_input_school = view.findViewById(R.id.tv_input_school);
+        tv_input_city = view.findViewById(R.id.tv_input_city);
+        tv_input_birthdate = view.findViewById(R.id.tv_input_birthdate);
+
+        profileViewModel.getUserDetail(helper.getUserId());
+        profileViewModel.getResultUserDetail().observe(getActivity(), showUserDetail);
 
         btn_profile_logout = view.findViewById(R.id.btn_profile_logout);
         btn_profile_logout.setOnClickListener(view1 -> {
@@ -104,9 +115,25 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        getActivity().getViewModelStore().clear();
-    }
+    private Observer<User> showUserDetail = new Observer<User>() {
+        @Override
+        public void onChanged(User user) {
+            User.Users resultUser = user.getUsers().get(0);
+            if (user == null){
+                tv_input_username.setText("Unknown");
+                tv_input_name.setText("Unknown");
+                tv_input_email.setText("Unknown");
+                tv_input_school.setText("Unknown");
+                tv_input_city.setText("Unknown");
+                tv_input_birthdate.setText("Unknown");
+            }else{
+                tv_input_username.setText(resultUser.getUsername());
+                tv_input_name.setText(resultUser.getName());
+                tv_input_email.setText(resultUser.getEmail());
+                tv_input_school.setText(resultUser.getSchool());
+                tv_input_city.setText(resultUser.getCity());
+                tv_input_birthdate.setText(resultUser.getBirthdate());
+            }
+        }
+    };
 }

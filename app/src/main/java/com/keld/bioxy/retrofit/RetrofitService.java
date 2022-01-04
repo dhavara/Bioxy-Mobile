@@ -66,8 +66,8 @@ public class RetrofitService {
         return api.getDifficulties();
     }
 
-    public Call<User> getUser(int id){
-        return api.getUser(id);
+    public Call<User> getUserDetail(int id){
+        return api.getUserDetail(id);
     }
 
     public Call<JsonObject> logout() {

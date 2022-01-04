@@ -1,12 +1,13 @@
 package com.keld.bioxy.view.ProfileView;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
+import com.keld.bioxy.model.User;
 import com.keld.bioxy.repositories.ProfileRepository;
 
 public class ProfileViewModel extends AndroidViewModel {
@@ -18,6 +19,14 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public void init(String token) {
         profileRepository = ProfileRepository.getInstance(token);
+    }
+
+    private MutableLiveData<User> resultUserDetail = new MutableLiveData<>();
+    public void getUserDetail(int id){
+        resultUserDetail = profileRepository.getUserDetail(id);
+    }
+    public LiveData<User> getResultUserDetail(){
+        return resultUserDetail;
     }
 
     public LiveData<String> logout() {

@@ -9,11 +9,22 @@ import java.util.List;
 
 public class User implements Parcelable {
 
+
     private String message;
     private List<Users> users;
 
     protected User(Parcel in) {
         message = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(message);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -49,19 +60,10 @@ public class User implements Parcelable {
         this.users = users;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(message);
-    }
-
     public static class Users {
         private int id;
         private String username;
+        private String name;
         private String email;
         private String school;
         private String city;
@@ -87,6 +89,14 @@ public class User implements Parcelable {
 
         public void setUsername(String username) {
             this.username = username;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
         }
 
         public String getEmail() {

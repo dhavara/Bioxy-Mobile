@@ -25,7 +25,7 @@ public interface ApiEndPoints {
     Call<Soal> getQuiz(@Path("id") int id); //id difficulty
 
     @GET("user/{id}")
-    Call<User> getUser (@Path("id") int id); //id user
+    Call<User> getUserDetail (@Path("id") int id); //id user
 
     @POST("logout")
     Call<JsonObject> logout();

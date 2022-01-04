@@ -58,7 +58,7 @@ public class QuizRepository {
 
     public MutableLiveData<User> getUser(int id) {
         final MutableLiveData<User> listUser = new MutableLiveData<>();
-        apiService.getUser(id).enqueue(new Callback<User>() {
+        apiService.getUserDetail(id).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {

@@ -51,7 +51,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/img_profile"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginBottom="24dp"
@@ -90,69 +90,7 @@
         app:layout_constraintVertical_bias="0.636" />
 
     <TextView
-        android:id="@+id/tv_username3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/baloo_paaji"
-        android:text="Umur :"
-        android:textColor="@color/secondary"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username2" />
-
-    <TextView
-        android:id="@+id/tv_input_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_username3"
-        app:layout_constraintEnd_toEndOf="@+id/tv_input_username"
-        app:layout_constraintStart_toEndOf="@+id/tv_username3"
-        app:layout_constraintTop_toTopOf="@+id/tv_username3"
-        app:layout_constraintVertical_bias="0.545" />
-
-    <TextView
-        android:id="@+id/tv_username4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/baloo_paaji"
-        android:text="Alamat :"
-        android:textColor="@color/secondary"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username3" />
-
-    <TextView
-        android:id="@+id/tv_username6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/baloo_paaji"
-        android:text="Telepon :"
-        android:textColor="@color/secondary"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username5" />
-
-    <TextView
-        android:id="@+id/tv_input_phone"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_username6"
-        app:layout_constraintEnd_toEndOf="@+id/tv_input_username"
-        app:layout_constraintStart_toEndOf="@+id/tv_username6"
-        app:layout_constraintTop_toTopOf="@+id/tv_username6"
-        app:layout_constraintVertical_bias="0.545" />
-
-    <TextView
-        android:id="@+id/tv_username2"
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -170,39 +108,13 @@
         android:layout_marginStart="8dp"
         android:text="TextView"
         android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_username2"
-        app:layout_constraintEnd_toEndOf="@+id/tv_input_username"
-        app:layout_constraintStart_toEndOf="@+id/tv_username2"
-        app:layout_constraintTop_toTopOf="@+id/tv_username2"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+        app:layout_constraintStart_toEndOf="@+id/tv_name"
+        app:layout_constraintTop_toTopOf="@+id/tv_name"
         app:layout_constraintVertical_bias="0.545" />
 
     <TextView
-        android:id="@+id/tv_input_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_username4"
-        app:layout_constraintEnd_toEndOf="@+id/tv_input_username"
-        app:layout_constraintStart_toEndOf="@+id/tv_username4"
-        app:layout_constraintTop_toTopOf="@+id/tv_username4" />
-
-    <TextView
-        android:id="@+id/tv_input_email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_username5"
-        app:layout_constraintEnd_toEndOf="@+id/tv_input_username"
-        app:layout_constraintStart_toEndOf="@+id/tv_username5"
-        app:layout_constraintTop_toTopOf="@+id/tv_username5"
-        app:layout_constraintVertical_bias="0.636" />
-
-    <TextView
-        android:id="@+id/tv_username5"
+        android:id="@+id/tv_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -211,7 +123,90 @@
         android:textColor="@color/secondary"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="@+id/tv_username"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username4" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+    <TextView
+        android:id="@+id/tv_input_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_email"
+        app:layout_constraintStart_toEndOf="@+id/tv_email"
+        app:layout_constraintTop_toTopOf="@+id/tv_email"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <TextView
+        android:id="@+id/tv_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/baloo_paaji"
+        android:text="Sekolah :"
+        android:textColor="@color/secondary"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_email" />
+
+    <TextView
+        android:id="@+id/tv_input_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_school"
+        app:layout_constraintStart_toEndOf="@+id/tv_school"
+        app:layout_constraintTop_toTopOf="@+id/tv_school" />
+
+    <TextView
+        android:id="@+id/tv_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/baloo_paaji"
+        android:text="Kota :"
+        android:textColor="@color/secondary"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_school" />
+
+    <TextView
+        android:id="@+id/tv_input_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_city"
+        app:layout_constraintStart_toEndOf="@+id/tv_city"
+        app:layout_constraintTop_toTopOf="@+id/tv_city"
+        app:layout_constraintVertical_bias="0.636" />
+
+    <TextView
+        android:id="@+id/tv_birthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/baloo_paaji"
+        android:text="Tanggal Lahir :"
+        android:textColor="@color/secondary"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/tv_username"
+        app:layout_constraintTop_toBottomOf="@+id/tv_city" />
+
+    <TextView
+        android:id="@+id/tv_input_birthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_birthdate"
+        app:layout_constraintStart_toEndOf="@+id/tv_birthdate"
+        app:layout_constraintTop_toTopOf="@+id/tv_birthdate"
+        app:layout_constraintVertical_bias="0.545" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_profile_logout"
@@ -223,7 +218,7 @@
         android:textColor="@color/light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_username6" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_birthdate" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
