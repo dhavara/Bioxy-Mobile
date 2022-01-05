@@ -56,7 +56,7 @@
             tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <ImageButton
-            android:id="@+id/btn_img_frame"
+            android:id="@+id/img_frame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -84,9 +84,9 @@
             android:layout_marginTop="9dp"
             android:text="Ganti Pigura"
             app:layout_constraintBottom_toBottomOf="@+id/tv_ganti_photo_desc"
-            app:layout_constraintEnd_toEndOf="@+id/btn_img_frame"
-            app:layout_constraintStart_toStartOf="@+id/btn_img_frame"
-            app:layout_constraintTop_toBottomOf="@+id/btn_img_frame" />
+            app:layout_constraintEnd_toEndOf="@+id/img_frame"
+            app:layout_constraintStart_toStartOf="@+id/img_frame"
+            app:layout_constraintTop_toBottomOf="@+id/img_frame" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_phone"

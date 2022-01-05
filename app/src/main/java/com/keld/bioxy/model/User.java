@@ -140,10 +140,10 @@ public class User implements Parcelable {
         }
 
         public static class Details {
-            private Object user_image;
+            private String user_image;
             private String point;
-            private Object user_color;
-            private Object user_frame;
+            private int user_color;
+            private int user_frame;
             private int user_title;
 
             public static Details objectFromData(String str) {
@@ -151,11 +151,11 @@ public class User implements Parcelable {
                 return new Gson().fromJson(str, Details.class);
             }
 
-            public Object getUser_image() {
+            public String getUser_image() {
                 return user_image;
             }
 
-            public void setUser_image(Object user_image) {
+            public void setUser_image(String user_image) {
                 this.user_image = user_image;
             }
 
@@ -167,19 +167,19 @@ public class User implements Parcelable {
                 this.point = point;
             }
 
-            public Object getUser_color() {
+            public int getUser_color() {
                 return user_color;
             }
 
-            public void setUser_color(Object user_color) {
+            public void setUser_color(int user_color) {
                 this.user_color = user_color;
             }
 
-            public Object getUser_frame() {
+            public int getUser_frame() {
                 return user_frame;
             }
 
-            public void setUser_frame(Object user_frame) {
+            public void setUser_frame(int user_frame) {
                 this.user_frame = user_frame;
             }
 

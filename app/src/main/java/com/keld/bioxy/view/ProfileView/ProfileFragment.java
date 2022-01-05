@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +22,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.keld.bioxy.R;
+import com.keld.bioxy.helper.Const;
 import com.keld.bioxy.helper.SharedPreferenceHelper;
+import com.keld.bioxy.model.Frame;
 import com.keld.bioxy.model.User;
+import com.keld.bioxy.view.MainView.SplashFragmentDirections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,7 +38,8 @@ import com.keld.bioxy.model.User;
 public class ProfileFragment extends Fragment {
     Button btn_profile_edit, btn_profile_logout;
     TextView tv_input_username, tv_input_name, tv_input_email, tv_input_school, tv_input_city, tv_input_birthdate;
-    ImageView img_profile;
+    ImageView img_profile, img_frame;
+    int frameId;
 
     private ProfileViewModel profileViewModel;
     private SharedPreferenceHelper helper;
@@ -98,9 +105,20 @@ public class ProfileFragment extends Fragment {
         tv_input_school = view.findViewById(R.id.tv_input_school);
         tv_input_city = view.findViewById(R.id.tv_input_city);
         tv_input_birthdate = view.findViewById(R.id.tv_input_birthdate);
+        img_profile = view.findViewById(R.id.img_profile);
+        img_frame = view.findViewById(R.id.img_frame);
+        frameId = 0;
 
         profileViewModel.getUserDetail(helper.getUserId());
         profileViewModel.getResultUserDetail().observe(getActivity(), showUserDetail);
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (frameId > 0){
+                Log.d("onResponse: ", String.valueOf(frameId));
+                profileViewModel.getFrameDetail(frameId);
+                profileViewModel.getResultFrameDetail().observe(getActivity(), showFrameDetail);
+            }
+        }, 1000);
 
         btn_profile_logout = view.findViewById(R.id.btn_profile_logout);
         btn_profile_logout.setOnClickListener(view1 -> {
@@ -119,20 +137,41 @@ public class ProfileFragment extends Fragment {
         @Override
         public void onChanged(User user) {
             User.Users resultUser = user.getUsers().get(0);
-            if (user == null){
+            if (user == null) {
                 tv_input_username.setText("Unknown");
                 tv_input_name.setText("Unknown");
                 tv_input_email.setText("Unknown");
                 tv_input_school.setText("Unknown");
                 tv_input_city.setText("Unknown");
                 tv_input_birthdate.setText("Unknown");
-            }else{
+                Glide.with(getActivity()).load(Const.IMG_URL + "null.png").into(img_profile);
+            } else {
                 tv_input_username.setText(resultUser.getUsername());
                 tv_input_name.setText(resultUser.getName());
                 tv_input_email.setText(resultUser.getEmail());
                 tv_input_school.setText(resultUser.getSchool());
                 tv_input_city.setText(resultUser.getCity());
                 tv_input_birthdate.setText(resultUser.getBirthdate());
+                if (resultUser.getDetails().getUser_image() == null) {
+                    Glide.with(getActivity()).load(Const.IMG_URL + "null.png").into(img_profile);
+                } else {
+                    Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
+                }
+                frameId = resultUser.getDetails().getUser_frame();
+//                if (resultUser.getDetails().getUser_image() != null) {
+//                    Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
+//                }
+            }
+        }
+    };
+
+    private Observer<Frame> showFrameDetail = new Observer<Frame>() {
+        @Override
+        public void onChanged(Frame frame) {
+            Frame.Frames resultFrame = frame.getFrames().get(0);
+
+            if (frame != null){
+                Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultFrame.getImage_path()).into(img_frame);
             }
         }
     };

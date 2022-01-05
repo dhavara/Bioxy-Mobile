@@ -44,7 +44,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/input_radius"
             android:hint="Username"
-            android:textColor="@color/light" />
+            android:textColor="@color/light"
+            app:boxStrokeColor="@null"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

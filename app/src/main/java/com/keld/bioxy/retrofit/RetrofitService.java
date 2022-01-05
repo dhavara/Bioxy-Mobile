@@ -3,6 +3,7 @@ package com.keld.bioxy.retrofit;
 import com.google.gson.JsonObject;
 import com.keld.bioxy.helper.Const;
 import com.keld.bioxy.model.Difficulty;
+import com.keld.bioxy.model.Frame;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
@@ -68,6 +69,10 @@ public class RetrofitService {
 
     public Call<User> getUserDetail(int id){
         return api.getUserDetail(id);
+    }
+
+    public Call<Frame> getFrameDetail(int id){
+        return api.getFrameDetail(id);
     }
 
     public Call<JsonObject> logout() {

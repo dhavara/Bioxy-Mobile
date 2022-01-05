@@ -7,11 +7,14 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.keld.bioxy.model.Frame;
 import com.keld.bioxy.model.User;
+import com.keld.bioxy.repositories.ItemRepository;
 import com.keld.bioxy.repositories.ProfileRepository;
 
 public class ProfileViewModel extends AndroidViewModel {
     private ProfileRepository profileRepository;
+    private ItemRepository itemRepository;
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
@@ -29,8 +32,17 @@ public class ProfileViewModel extends AndroidViewModel {
         return resultUserDetail;
     }
 
+    private MutableLiveData<Frame> resultFrameDetail = new MutableLiveData<>();
+    public void getFrameDetail(int id){
+        resultFrameDetail = itemRepository.getFrameDetail(id);
+    }
+    public LiveData<Frame> getResultFrameDetail(){
+        return resultFrameDetail;
+    }
+
     public LiveData<String> logout() {
         profileRepository.resetInstances();
+        itemRepository.resetInstances();
         return profileRepository.logout();
     }
 
@@ -38,5 +50,6 @@ public class ProfileViewModel extends AndroidViewModel {
     protected void onCleared() {
         super.onCleared();
         profileRepository.resetInstances();
+        itemRepository.resetInstances();
     }
 }
