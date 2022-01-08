@@ -7,12 +7,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.keld.bioxy.R;
+import com.keld.bioxy.helper.SharedPreferenceHelper;
+import com.keld.bioxy.model.Leaderboard;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +30,10 @@ import com.keld.bioxy.R;
  */
 public class LeaderboardFragment extends Fragment {
     Toolbar toolbar;
+    private LeaderboardViewModel leaderboardViewModel;
+    private LeaderboardAdapter leaderboardAdapter;
+    private RecyclerView rv;
+    private SharedPreferenceHelper helper;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,5 +88,32 @@ public class LeaderboardFragment extends Fragment {
         toolbar = getActivity().findViewById(R.id.toolbar_main);
         toolbar.setTitle("Leaderboard");
         toolbar.setTitleTextColor(Color.WHITE);
+
+        rv = view.findViewById(R.id.rv_leaderboard);
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        leaderboardViewModel = new ViewModelProvider(getActivity()).get(LeaderboardViewModel.class);
+        leaderboardViewModel.init(helper.getAccessToken());
+        leaderboardViewModel.getLeaderboard();
+        leaderboardViewModel.getResultLeaderboard().observe(getActivity(), showLeaderboard);
+    }
+    List<Leaderboard.Leaderboards> results = new ArrayList<>();
+    LinearLayoutManager linearLayoutManager;
+
+    private Observer<Leaderboard> showLeaderboard = new Observer<Leaderboard>() {
+        @Override
+        public void onChanged(Leaderboard leaderboard) {
+            results = leaderboard.getLeaderboards();
+            linearLayoutManager = new LinearLayoutManager(getActivity());
+            rv.setLayoutManager(linearLayoutManager);
+            leaderboardAdapter = new LeaderboardAdapter(getActivity());
+            leaderboardAdapter.setLeaderboardsList(results);
+            rv.setAdapter(leaderboardAdapter);
+        }
+    };
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        getActivity().getViewModelStore().clear();
     }
 }
