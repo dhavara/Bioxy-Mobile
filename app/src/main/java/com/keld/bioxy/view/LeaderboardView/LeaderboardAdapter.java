@@ -42,11 +42,11 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboardsList().get(position);
-        holder.lb_rank.setText(results.getId());
+        holder.lb_rank.setText("" + results.getId());
         holder.lb_difficulty.setText(results.getDifficulty());
         holder.lb_username.setText(results.getUsername());
-        holder.lb_point.setText(results.getPoint());
-        holder.lb_accuracy.setText(results.getAccuracy());
+        holder.lb_point.setText("" + results.getPoint());
+        holder.lb_accuracy.setText("" + results.getAccuracy());
         holder.lb_date.setText(results.getCreated_at());
     }
 
