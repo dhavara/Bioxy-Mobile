@@ -12,7 +12,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -75,6 +77,8 @@
                 android:layout_marginTop="16dp"
                 android:text="Username"
                 android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cv_inner_leaderboard" />
 
@@ -107,6 +111,7 @@
                 android:layout_marginBottom="16dp"
                 android:text="Date"
                 android:textColor="@color/black"
+                android:lines="2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/lb_accuracy"
                 app:layout_constraintTop_toBottomOf="@+id/lb_accuracy" />

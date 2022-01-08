@@ -45,9 +45,9 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
         holder.lb_rank.setText("" + results.getId());
         holder.lb_difficulty.setText(results.getDifficulty());
         holder.lb_username.setText(results.getUsername());
-        holder.lb_point.setText("" + results.getPoint());
-        holder.lb_accuracy.setText("" + results.getAccuracy());
-        holder.lb_date.setText(results.getCreated_at());
+        holder.lb_point.setText("Poin: " + results.getPoint());
+        holder.lb_accuracy.setText("Akurasi: " + results.getAccuracy() + "%");
+        holder.lb_date.setText("Tanggal Pengerjaan:\n" + results.getCreated_at());
     }
 
     @Override
