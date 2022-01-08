@@ -104,6 +104,8 @@ public class ProfileFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
         profileViewModel.init(helper.getAccessToken());
+        profileViewModel.getUserDetail(helper.getUserId());
+        profileViewModel.getResultUserDetail().observe(getActivity(), showUserDetail);
 
         tv_input_username = view.findViewById(R.id.tv_input_username);
         tv_input_name = view.findViewById(R.id.tv_input_name);
@@ -115,12 +117,11 @@ public class ProfileFragment extends Fragment {
         img_frame = view.findViewById(R.id.img_frame);
         frameId = 0;
 
-        profileViewModel.getUserDetail(helper.getUserId());
-        profileViewModel.getResultUserDetail().observe(getActivity(), showUserDetail);
 
 //        new Handler(Looper.getMainLooper()).postDelayed(() -> {
 //            if (frameId > 0){
-//                Log.d("onResponse: ", String.valueOf(frameId));
+//                profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
+//                profileViewModel.init(helper.getAccessToken());
 //                profileViewModel.getFrameDetail(frameId);
 //                profileViewModel.getResultFrameDetail().observe(getActivity(), showFrameDetail);
 //            }

@@ -98,16 +98,14 @@ public class QuizFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
         quizViewModel.init(helper.getAccessToken());
-        Log.d("SUS: ", helper.getAccessToken());
+        quizViewModel.getQuiz(difficulty_id);
+        quizViewModel.getResultQuiz().observe(getActivity(), showQuiz);
 
         int health = getArguments().getInt("health");
         int difficulty_id = getArguments().getInt("difficulty_id");
         int soal_number = getArguments().getInt("soal_number");
         int soal_correct = getArguments().getInt("soal_correct");
         int point = getArguments().getInt("point");
-
-        quizViewModel.getQuiz(difficulty_id);
-        quizViewModel.getResultQuiz().observe(getActivity(), showQuiz);
 
         txt_no_soal = view.findViewById(R.id.txt_no_soal);
         txt_soal = view.findViewById(R.id.txt_soal);
