@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Leaderboard implements Parcelable {
 
+
     private String message;
     private List<Leaderboards> leaderboards;
 
@@ -61,12 +62,13 @@ public class Leaderboard implements Parcelable {
 
     public static class Leaderboards {
         private int id;
-        private int user_id;
+        private String username;
         private int point;
         private int accuracy;
         private int total_correct;
         private int total_question;
         private String difficulty;
+        private String created_at;
 
         public static Leaderboards objectFromData(String str) {
 
@@ -81,12 +83,12 @@ public class Leaderboard implements Parcelable {
             this.id = id;
         }
 
-        public int getUser_id() {
-            return user_id;
+        public String getUsername() {
+            return username;
         }
 
-        public void setUser_id(int user_id) {
-            this.user_id = user_id;
+        public void setUsername(String username) {
+            this.username = username;
         }
 
         public int getPoint() {
@@ -127,6 +129,14 @@ public class Leaderboard implements Parcelable {
 
         public void setDifficulty(String difficulty) {
             this.difficulty = difficulty;
+        }
+
+        public String getCreated_at() {
+            return created_at;
+        }
+
+        public void setCreated_at(String created_at) {
+            this.created_at = created_at;
         }
     }
 }
