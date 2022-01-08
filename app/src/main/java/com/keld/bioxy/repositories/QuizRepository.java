@@ -9,6 +9,8 @@ import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.User;
 import com.keld.bioxy.retrofit.RetrofitService;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

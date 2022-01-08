@@ -52,6 +52,29 @@
         <action
             android:id="@+id/action_quizFragment2_to_quizResultFragment"
             app:destination="@id/quizResultFragment2" />
+        <action
+            android:id="@+id/action_quizFragment2_self"
+            app:destination="@id/quizFragment2" />
+        <argument
+            android:name="health"
+            app:argType="integer"
+            android:defaultValue="5" />
+        <argument
+            android:name="soal_number"
+            app:argType="integer"
+            android:defaultValue="1" />
+        <argument
+            android:name="soal_correct"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="point"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="difficulty_id"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
     <fragment
         android:id="@+id/quizResultFragment2"

@@ -1,14 +1,29 @@
 package com.keld.bioxy.view.QuizView;
 
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.keld.bioxy.R;
+import com.keld.bioxy.helper.SharedPreferenceHelper;
+import com.keld.bioxy.model.Soal;
+import com.keld.bioxy.view.ProfileView.ProfileViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +31,14 @@ import com.keld.bioxy.R;
  * create an instance of this fragment.
  */
 public class QuizFragment extends Fragment {
+    private QuizViewModel quizViewModel;
+    private SharedPreferenceHelper helper;
+    Toolbar toolbar;
+
+    private TextView txt_no_soal, txt_soal, txt_point, txt_health;
+    private ImageView img_soal;
+    private Button btn_answers1, btn_answers2, btn_answers3, btn_answers4, btn_answers5;
+    private int health, difficulty_id, soal_number, soal_correct, point;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,4 +86,58 @@ public class QuizFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_quiz, container, false);
     }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        toolbar = getActivity().findViewById(R.id.toolbar_main);
+        toolbar.setTitle("Quiz");
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
+        quizViewModel.init(helper.getAccessToken());
+        Log.d("SUS: ", helper.getAccessToken());
+
+        int health = getArguments().getInt("health");
+        int difficulty_id = getArguments().getInt("difficulty_id");
+        int soal_number = getArguments().getInt("soal_number");
+        int soal_correct = getArguments().getInt("soal_correct");
+        int point = getArguments().getInt("point");
+
+        quizViewModel.getQuiz(difficulty_id);
+        quizViewModel.getResultQuiz().observe(getActivity(), showQuiz);
+
+        txt_no_soal = view.findViewById(R.id.txt_no_soal);
+        txt_soal = view.findViewById(R.id.txt_soal);
+        txt_point = view.findViewById(R.id.txt_point);
+        txt_health = view.findViewById(R.id.txt_health);
+        img_soal = view.findViewById(R.id.img_soal);
+        btn_answers1 = view.findViewById(R.id.btn_answers1);
+        btn_answers2 = view.findViewById(R.id.btn_answers2);
+        btn_answers3 = view.findViewById(R.id.btn_answers3);
+        btn_answers4 = view.findViewById(R.id.btn_answers4);
+        btn_answers5 = view.findViewById(R.id.btn_answers5);
+
+        txt_no_soal.setText("Soal " + soal_number);
+        txt_point.setText("Poin: " + point);
+        txt_health.setText("Nyawa: " + health);
+    }
+
+    private Observer<Soal> showQuiz = new Observer<Soal>() {
+        @Override
+        public void onChanged(Soal soal) {
+//            Soal.Soals resultSoal = soal.getSoals().get(0);
+//            Log.d("AMOGUS: ", soal.getSoals().get(0).getQuestion());
+//            if (soal != null) {
+//               txt_soal.setText(resultSoal.getQuestion());
+//               btn_answers1.setText(resultSoal.getAnswer_1());
+//               btn_answers2.setText(resultSoal.getAnswer_2());
+//               btn_answers3.setText(resultSoal.getAnswer_3());
+//               btn_answers4.setText(resultSoal.getAnswer_4());
+//               btn_answers5.setText(resultSoal.getAnswer_correct());
+//            }
+        }
+    };
 }

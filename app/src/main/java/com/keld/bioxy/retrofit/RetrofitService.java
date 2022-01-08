@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.keld.bioxy.helper.Const;
 import com.keld.bioxy.model.Difficulty;
 import com.keld.bioxy.model.Frame;
+import com.keld.bioxy.model.Leaderboard;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
@@ -65,6 +66,10 @@ public class RetrofitService {
 
     public Call<Difficulty> getDifficulties(){
         return api.getDifficulties();
+    }
+
+    public Call<Leaderboard> getLeaderboard(){
+        return api.getLeaderboard();
     }
 
     public Call<User> getUserDetail(int id){

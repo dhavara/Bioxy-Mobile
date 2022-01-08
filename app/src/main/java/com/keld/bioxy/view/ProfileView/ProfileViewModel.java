@@ -42,7 +42,6 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public LiveData<String> logout() {
         profileRepository.resetInstances();
-        itemRepository.resetInstances();
         return profileRepository.logout();
     }
 
@@ -50,6 +49,5 @@ public class ProfileViewModel extends AndroidViewModel {
     protected void onCleared() {
         super.onCleared();
         profileRepository.resetInstances();
-        itemRepository.resetInstances();
     }
 }

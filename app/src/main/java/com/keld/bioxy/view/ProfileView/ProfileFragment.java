@@ -1,9 +1,11 @@
 package com.keld.bioxy.view.ProfileView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -36,6 +38,7 @@ import com.keld.bioxy.view.MainView.SplashFragmentDirections;
  * create an instance of this fragment.
  */
 public class ProfileFragment extends Fragment {
+    Toolbar toolbar;
     Button btn_profile_edit, btn_profile_logout;
     TextView tv_input_username, tv_input_name, tv_input_email, tv_input_school, tv_input_city, tv_input_birthdate;
     ImageView img_profile, img_frame;
@@ -94,6 +97,9 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        toolbar = getActivity().findViewById(R.id.toolbar_main);
+        toolbar.setTitle("Profile");
+        toolbar.setTitleTextColor(Color.WHITE);
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
@@ -112,13 +118,13 @@ public class ProfileFragment extends Fragment {
         profileViewModel.getUserDetail(helper.getUserId());
         profileViewModel.getResultUserDetail().observe(getActivity(), showUserDetail);
 
-        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            if (frameId > 0){
-                Log.d("onResponse: ", String.valueOf(frameId));
-                profileViewModel.getFrameDetail(frameId);
-                profileViewModel.getResultFrameDetail().observe(getActivity(), showFrameDetail);
-            }
-        }, 1000);
+//        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+//            if (frameId > 0){
+//                Log.d("onResponse: ", String.valueOf(frameId));
+//                profileViewModel.getFrameDetail(frameId);
+//                profileViewModel.getResultFrameDetail().observe(getActivity(), showFrameDetail);
+//            }
+//        }, 1000);
 
         btn_profile_logout = view.findViewById(R.id.btn_profile_logout);
         btn_profile_logout.setOnClickListener(view1 -> {
@@ -157,7 +163,7 @@ public class ProfileFragment extends Fragment {
                 } else {
                     Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
                 }
-                frameId = resultUser.getDetails().getUser_frame();
+//                frameId = resultUser.getDetails().getUser_frame();
 //                if (resultUser.getDetails().getUser_image() != null) {
 //                    Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
 //                }
@@ -165,14 +171,14 @@ public class ProfileFragment extends Fragment {
         }
     };
 
-    private Observer<Frame> showFrameDetail = new Observer<Frame>() {
-        @Override
-        public void onChanged(Frame frame) {
-            Frame.Frames resultFrame = frame.getFrames().get(0);
-
-            if (frame != null){
-                Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultFrame.getImage_path()).into(img_frame);
-            }
-        }
-    };
+//    private Observer<Frame> showFrameDetail = new Observer<Frame>() {
+//        @Override
+//        public void onChanged(Frame frame) {
+//            Frame.Frames resultFrame = frame.getFrames().get(0);
+//
+//            if (frame != null){
+//                Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultFrame.getImage_path()).into(img_frame);
+//            }
+//        }
+//    };
 }
