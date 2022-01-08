@@ -37,7 +37,7 @@
                     android:background="@color/primary">
 
                     <TextView
-                        android:id="@+id/lb_number"
+                        android:id="@+id/lb_rank"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
