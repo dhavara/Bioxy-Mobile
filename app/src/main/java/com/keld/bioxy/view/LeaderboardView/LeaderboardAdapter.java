@@ -45,9 +45,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboardsList().get(position);
         if (results.getDifficulty().equals("Mudah")) {
-            if (position == 1) {
-                ranking += 1;
-            }
+            ranking += 1;
         }
         if (results.getDifficulty().equals("Sedang")) {
             if (getLeaderboardsList().get(position-1).getDifficulty().equals("Mudah")) {
@@ -58,7 +56,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             }
         }
         if (results.getDifficulty().equals("Sulit")) {
-            if (getLeaderboardsList().get(position-1).getDifficulty().equals("Sedang")) {
+            if (getLeaderboardsList().get(position-1).getDifficulty().equals("Sedang") || getLeaderboardsList().get(position-1).getDifficulty().equals("Mudah")) {
                 ranking = 1;
             }
             else {
@@ -66,7 +64,7 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
             }
         }
         if (results.getDifficulty().equals("Sangat Sulit")) {
-            if (getLeaderboardsList().get(position-1).getDifficulty().equals("Sulit")) {
+            if (getLeaderboardsList().get(position-1).getDifficulty().equals("Sulit") || getLeaderboardsList().get(position-1).getDifficulty().equals("Sedang") || getLeaderboardsList().get(position-1).getDifficulty().equals("Mudah")) {
                 ranking = 1;
             }
             else {
