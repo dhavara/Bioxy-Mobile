@@ -118,14 +118,14 @@ public class ProfileFragment extends Fragment {
         frameId = 0;
 
 
-//        new Handler(Looper.getMainLooper()).postDelayed(() -> {
-//            if (frameId > 0){
-//                profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
-//                profileViewModel.init(helper.getAccessToken());
-//                profileViewModel.getFrameDetail(frameId);
-//                profileViewModel.getResultFrameDetail().observe(getActivity(), showFrameDetail);
-//            }
-//        }, 1000);
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            if (frameId > 0){
+                profileViewModel = new ViewModelProvider(getActivity()).get(ProfileViewModel.class);
+                profileViewModel.init(helper.getAccessToken());
+                profileViewModel.getFrameDetail(frameId);
+                profileViewModel.getResultFrameDetail().observe(getActivity(), showFrameDetail);
+            }
+        }, 1000);
 
         btn_profile_logout = view.findViewById(R.id.btn_profile_logout);
         btn_profile_logout.setOnClickListener(view1 -> {
@@ -164,7 +164,7 @@ public class ProfileFragment extends Fragment {
                 } else {
                     Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
                 }
-//                frameId = resultUser.getDetails().getUser_frame();
+                frameId = resultUser.getDetails().getUser_frame();
 //                if (resultUser.getDetails().getUser_image() != null) {
 //                    Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
 //                }
@@ -172,14 +172,15 @@ public class ProfileFragment extends Fragment {
         }
     };
 
-//    private Observer<Frame> showFrameDetail = new Observer<Frame>() {
-//        @Override
-//        public void onChanged(Frame frame) {
-//            Frame.Frames resultFrame = frame.getFrames().get(0);
-//
-//            if (frame != null){
-//                Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultFrame.getImage_path()).into(img_frame);
-//            }
-//        }
-//    };
+    private Observer<Frame> showFrameDetail = new Observer<Frame>() {
+        @Override
+        public void onChanged(Frame frame) {
+            Log.d("AMOGUS: ", String.valueOf(frame.getFrames()));
+            Frame.Frames resultFrame = frame.getFrames().get(0);
+
+            if (frame != null){
+                Glide.with(getActivity()).load(Const.IMG_URL + "frame/" + resultFrame.getImage_path()).into(img_frame);
+            }
+        }
+    };
 }

@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.keld.bioxy.model.Frame;
 import com.keld.bioxy.model.User;
 import com.keld.bioxy.retrofit.RetrofitService;
 
@@ -60,6 +61,25 @@ public class ProfileRepository {
             }
         });
         return listUserDetail;
+    }
+
+    public MutableLiveData<Frame> getFrameDetail(int id) {
+        final MutableLiveData<Frame> listFrameDetail = new MutableLiveData<>();
+        apiService.getFrameDetail(id).enqueue(new Callback<Frame>() {
+            @Override
+            public void onResponse(Call<Frame> call, Response<Frame> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        listFrameDetail.postValue(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Frame> call, Throwable t) {
+            }
+        });
+        return listFrameDetail;
     }
 
     public LiveData<String> logout(){

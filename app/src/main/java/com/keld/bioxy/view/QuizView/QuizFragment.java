@@ -95,17 +95,17 @@ public class QuizFragment extends Fragment {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-        helper = SharedPreferenceHelper.getInstance(requireActivity());
-        quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
-        quizViewModel.init(helper.getAccessToken());
-        quizViewModel.getQuiz(difficulty_id);
-        quizViewModel.getResultQuiz().observe(getActivity(), showQuiz);
-
         int health = getArguments().getInt("health");
         int difficulty_id = getArguments().getInt("difficulty_id");
         int soal_number = getArguments().getInt("soal_number");
         int soal_correct = getArguments().getInt("soal_correct");
         int point = getArguments().getInt("point");
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
+        quizViewModel.init(helper.getAccessToken());
+        quizViewModel.getQuiz(difficulty_id);
+        quizViewModel.getResultQuiz().observe(getActivity(), showQuiz);
 
         txt_no_soal = view.findViewById(R.id.txt_no_soal);
         txt_soal = view.findViewById(R.id.txt_soal);
@@ -126,16 +126,16 @@ public class QuizFragment extends Fragment {
     private Observer<Soal> showQuiz = new Observer<Soal>() {
         @Override
         public void onChanged(Soal soal) {
-//            Soal.Soals resultSoal = soal.getSoals().get(0);
-//            Log.d("AMOGUS: ", soal.getSoals().get(0).getQuestion());
-//            if (soal != null) {
-//               txt_soal.setText(resultSoal.getQuestion());
-//               btn_answers1.setText(resultSoal.getAnswer_1());
-//               btn_answers2.setText(resultSoal.getAnswer_2());
-//               btn_answers3.setText(resultSoal.getAnswer_3());
-//               btn_answers4.setText(resultSoal.getAnswer_4());
-//               btn_answers5.setText(resultSoal.getAnswer_correct());
-//            }
+            Log.d("AMOGUS: ", String.valueOf(soal.getSoals()));
+            Soal.Soals resultSoal = soal.getSoals().get(0);
+            if (soal != null) {
+               txt_soal.setText(resultSoal.getQuestion());
+               btn_answers1.setText(resultSoal.getAnswer_1());
+               btn_answers2.setText(resultSoal.getAnswer_2());
+               btn_answers3.setText(resultSoal.getAnswer_3());
+               btn_answers4.setText(resultSoal.getAnswer_4());
+               btn_answers5.setText(resultSoal.getAnswer_correct());
+            }
         }
     };
 }

@@ -9,11 +9,22 @@ import java.util.List;
 
 public class Soal implements Parcelable {
 
+
     private String message;
     private List<Soals> soals;
 
     protected Soal(Parcel in) {
         message = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(message);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Soal> CREATOR = new Creator<Soal>() {
@@ -47,16 +58,6 @@ public class Soal implements Parcelable {
 
     public void setSoals(List<Soals> soals) {
         this.soals = soals;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(message);
     }
 
     public static class Soals {

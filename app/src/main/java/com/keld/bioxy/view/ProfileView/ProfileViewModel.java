@@ -34,7 +34,7 @@ public class ProfileViewModel extends AndroidViewModel {
 
     private MutableLiveData<Frame> resultFrameDetail = new MutableLiveData<>();
     public void getFrameDetail(int id){
-        resultFrameDetail = itemRepository.getFrameDetail(id);
+        resultFrameDetail = profileRepository.getFrameDetail(id);
     }
     public LiveData<Frame> getResultFrameDetail(){
         return resultFrameDetail;
