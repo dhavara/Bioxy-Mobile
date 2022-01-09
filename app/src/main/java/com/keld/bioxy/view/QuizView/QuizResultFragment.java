@@ -94,7 +94,7 @@ public class QuizResultFragment extends Fragment {
         soal_correct = getArguments().getInt("soal_correct");
         point = getArguments().getInt("point");
 
-        txt_accuracyPercent.setText((soal_correct/soal_number*100)+"%");
+        txt_accuracyPercent.setText(Math.ceil(soal_correct*100/soal_number)+"%");
         txt_correct.setText(soal_correct+"");
         txt_score.setText(point+"");
 
