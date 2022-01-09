@@ -70,13 +70,6 @@ public class Leaderboard implements Parcelable {
         private String difficulty;
         private String created_at;
 
-        public Leaderboards(String difficulty, int point, int total_correct, int total_question) {
-            this.difficulty = difficulty;
-            this.point = point;
-            this.total_correct = total_correct;
-            this.total_question = total_question;
-        }
-
         public static Leaderboards objectFromData(String str) {
 
             return new Gson().fromJson(str, Leaderboards.class);

@@ -156,7 +156,6 @@ public class QuizFragment extends Fragment {
 
                 btn_answers1.setOnClickListener(v -> {
                     health -= 1;
-                    soal_number += 1;
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
@@ -169,12 +168,12 @@ public class QuizFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
                     }
                     else {
+                        soal_number += 1;
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });
                 btn_answers2.setOnClickListener(v -> {
                     health -= 1;
-                    soal_number += 1;
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
@@ -187,12 +186,12 @@ public class QuizFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
                     }
                     else {
+                        soal_number += 1;
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });
                 btn_answers3.setOnClickListener(v -> {
                     health -= 1;
-                    soal_number += 1;
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
@@ -205,12 +204,12 @@ public class QuizFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
                     }
                     else {
+                        soal_number += 1;
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });
                 btn_answers4.setOnClickListener(v -> {
                     health -= 1;
-                    soal_number += 1;
 
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
@@ -223,6 +222,7 @@ public class QuizFragment extends Fragment {
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
                     }
                     else {
+                        soal_number += 1;
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });

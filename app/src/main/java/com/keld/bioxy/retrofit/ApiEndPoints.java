@@ -4,6 +4,7 @@ import com.google.gson.JsonObject;
 import com.keld.bioxy.model.Difficulty;
 import com.keld.bioxy.model.Frame;
 import com.keld.bioxy.model.Leaderboard;
+import com.keld.bioxy.model.ResultResponse;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
@@ -37,7 +38,11 @@ public interface ApiEndPoints {
     Call<Frame> getFrameDetail (@Path("id") int id); //id frame
 
     @POST("quiz/store")
-    Call<Leaderboard.Leaderboards> createHistory(@Body Leaderboard.Leaderboards leaderboard);
+    @FormUrlEncoded
+    Call<ResultResponse> result(@Field("difficulty") String difficulty,
+                                  @Field("point") int point,
+                                  @Field("total_correct") int total_correct,
+                                  @Field("total_number") int total_number);
 
     @POST("logout")
     Call<JsonObject> logout();

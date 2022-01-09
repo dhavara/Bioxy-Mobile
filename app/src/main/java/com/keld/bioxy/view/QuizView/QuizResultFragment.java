@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.keld.bioxy.R;
 import com.keld.bioxy.helper.SharedPreferenceHelper;
@@ -118,13 +120,19 @@ public class QuizResultFragment extends Fragment {
             case 4:
                 difficulty = "Sangat Sulit";
         }
-        Leaderboard.Leaderboards leaderboards = addData(difficulty, point, soal_correct, soal_number);
+
 
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
         quizViewModel.init(helper.getAccessToken());
-        quizViewModel.createHistory(leaderboards);
+        quizViewModel.result(difficulty, point, soal_correct, soal_number).observe(requireActivity(), resultResponse -> {
+            if (resultResponse != null){
+                Toast.makeText(requireActivity(), "Sukses! Data telah tersimpan.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(requireActivity(), "Gagal!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btn_result_leaderboard.setOnClickListener(v1 -> {
             Bundle bundle = new Bundle();
@@ -134,9 +142,5 @@ public class QuizResultFragment extends Fragment {
             Bundle bundle = new Bundle();
             Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_difficultyFragment2, bundle);
         });
-    }
-    private Leaderboard.Leaderboards addData(String difficulty, int point, int soal_correct, int soal_number) {
-        Leaderboard.Leaderboards leaderboards = new Leaderboard.Leaderboards(difficulty, point, soal_correct, soal_number);
-        return leaderboards;
     }
 }

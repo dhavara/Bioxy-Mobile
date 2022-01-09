@@ -5,6 +5,7 @@ import com.keld.bioxy.helper.Const;
 import com.keld.bioxy.model.Difficulty;
 import com.keld.bioxy.model.Frame;
 import com.keld.bioxy.model.Leaderboard;
+import com.keld.bioxy.model.ResultResponse;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
@@ -80,7 +81,7 @@ public class RetrofitService {
         return api.getFrameDetail(id);
     }
 
-    public Call<Leaderboard.Leaderboards> createHistory(Leaderboard.Leaderboards leaderboards) { return api.createHistory(leaderboards); }
+    public Call<ResultResponse> result(String difficulty, int point, int total_correct, int total_number) { return api.result(difficulty, point, total_correct, total_number); }
 
     public Call<JsonObject> logout() {
         return api.logout();
