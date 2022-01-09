@@ -43,39 +43,46 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboardsList().get(position);
-        int ranking = position;
+        int ranking = 0;
         if (results.getDifficulty() == "Mudah") {
-            if (ranking == position) {
+            if (ranking == 0) {
                 ranking = 1;
+                holder.lb_rank.setText("" + ranking);
             }
             ranking += 1;
+            holder.lb_rank.setText("" + ranking);
         }
         if (results.getDifficulty() == "Sedang") {
             if (getLeaderboardsList().get(position-1).getDifficulty() == "Mudah") {
                 ranking = 1;
+                holder.lb_rank.setText("" + ranking);
             }
             else {
                 ranking += 1;
+                holder.lb_rank.setText("" + ranking);
             }
         }
         if (results.getDifficulty() == "Sulit") {
             if (getLeaderboardsList().get(position-1).getDifficulty() == "Sedang") {
                 ranking = 1;
+                holder.lb_rank.setText("" + ranking);
             }
             else {
                 ranking += 1;
+                holder.lb_rank.setText("" + ranking);
             }
         }
         if (results.getDifficulty() == "Sangat Sulit") {
             if (getLeaderboardsList().get(position-1).getDifficulty() == "Sulit") {
                 ranking = 1;
+                holder.lb_rank.setText("" + ranking);
             }
             else {
                 ranking += 1;
+                holder.lb_rank.setText("" + ranking);
             }
         }
 
-        holder.lb_rank.setText("" + ranking);
         holder.lb_difficulty.setText(results.getDifficulty());
         holder.lb_username.setText(results.getUsername());
         holder.lb_point.setText("Poin: " + results.getPoint());
