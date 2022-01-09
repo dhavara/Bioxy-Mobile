@@ -124,21 +124,26 @@ public class QuizResultFragment extends Fragment {
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
         quizViewModel.init(helper.getAccessToken());
-        quizViewModel.result(difficulty, point, soal_correct, soal_number).observe(requireActivity(), resultResponse -> {
-            if (resultResponse != null){
-                Toast.makeText(requireActivity(), "Sukses! Data telah tersimpan.", Toast.LENGTH_SHORT).show();
-            }else{
-                Toast.makeText(requireActivity(), "Gagal!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         btn_result_leaderboard.setOnClickListener(v1 -> {
-            Bundle bundle = new Bundle();
-            Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_leaderboardFragment, bundle);
+            quizViewModel.result(difficulty, point, soal_correct, soal_number).observe(requireActivity(), resultResponse -> {
+                if (resultResponse != null){
+                    Toast.makeText(requireActivity(), "Sukses! Data telah tersimpan.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(requireActivity(), "Gagal!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_leaderboardFragment);
         });
         btn_back.setOnClickListener(v1 -> {
-            Bundle bundle = new Bundle();
-            Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_difficultyFragment2, bundle);
+            quizViewModel.result(difficulty, point, soal_correct, soal_number).observe(requireActivity(), resultResponse -> {
+                if (resultResponse != null){
+                    Toast.makeText(requireActivity(), "Sukses! Data telah tersimpan.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(requireActivity(), "Gagal!", Toast.LENGTH_SHORT).show();
+                }
+            });
+            Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_difficultyFragment2);
         });
     }
 }
