@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.keld.bioxy.R;
 import com.keld.bioxy.model.Leaderboard;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.CardViewViewHolder> {
@@ -42,7 +43,36 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboardsList().get(position);
-        holder.lb_rank.setText("" + results.getId());
+        int ranking = 1;
+        if (results.getDifficulty() == "Mudah") {
+            ranking += 1;
+        }
+        if (results.getDifficulty() == "Sedang") {
+            if (getLeaderboardsList().get(position-1).getDifficulty() == "Mudah") {
+                ranking = 1;
+            }
+            else {
+                ranking += 1;
+            }
+        }
+        if (results.getDifficulty() == "Sulit") {
+            if (getLeaderboardsList().get(position-1).getDifficulty() == "Sedang") {
+                ranking = 1;
+            }
+            else {
+                ranking += 1;
+            }
+        }
+        if (results.getDifficulty() == "Sangat Sulit") {
+            if (getLeaderboardsList().get(position-1).getDifficulty() == "Sulit") {
+                ranking = 1;
+            }
+            else {
+                ranking += 1;
+            }
+        }
+
+        holder.lb_rank.setText("" + ranking);
         holder.lb_difficulty.setText(results.getDifficulty());
         holder.lb_username.setText(results.getUsername());
         holder.lb_point.setText("Poin: " + results.getPoint());
