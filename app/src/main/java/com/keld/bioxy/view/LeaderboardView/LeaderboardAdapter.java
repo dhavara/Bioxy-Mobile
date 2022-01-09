@@ -43,9 +43,9 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboardsList().get(position);
-        int ranking = 0;
+        int ranking = position;
         if (results.getDifficulty() == "Mudah") {
-            if (ranking == 0) {
+            if (ranking == position) {
                 ranking = 1;
             }
             ranking += 1;
