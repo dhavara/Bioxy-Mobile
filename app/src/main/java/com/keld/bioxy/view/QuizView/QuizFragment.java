@@ -25,6 +25,12 @@ import com.keld.bioxy.helper.SharedPreferenceHelper;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.view.ProfileView.ProfileViewModel;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link QuizFragment#newInstance} factory method to
@@ -129,12 +135,25 @@ public class QuizFragment extends Fragment {
             Log.d("AMOGUS: ", String.valueOf(soal.getSoals()));
             Soal.Soals resultSoal = soal.getSoals().get(0);
             if (soal != null) {
-               txt_soal.setText(resultSoal.getQuestion());
-               btn_answers1.setText(resultSoal.getAnswer_1());
-               btn_answers2.setText(resultSoal.getAnswer_2());
-               btn_answers3.setText(resultSoal.getAnswer_3());
-               btn_answers4.setText(resultSoal.getAnswer_4());
-               btn_answers5.setText(resultSoal.getAnswer_correct());
+                txt_soal.setText(resultSoal.getQuestion());
+
+                Map answerMap = new HashMap();
+                answerMap.put("correct", resultSoal.getAnswer_correct());
+                answerMap.put("1", resultSoal.getAnswer_1());
+                answerMap.put("2", resultSoal.getAnswer_2());
+                answerMap.put("3", resultSoal.getAnswer_3());
+                answerMap.put("4", resultSoal.getAnswer_4());
+
+                List<String> keys = new ArrayList<String>(answerMap.keySet());
+                Collections.shuffle(keys);
+                for (Object o : keys) {
+                    System.out.println();
+                    if (btn_answers1.getText() == "ANSWER 1") btn_answers1.setText((String) answerMap.get(o));
+                    else if (btn_answers2.getText() == "ANSWER 2") btn_answers2.setText((String) answerMap.get(o));
+                    else if (btn_answers3.getText() == "ANSWER 3") btn_answers3.setText((String) answerMap.get(o));
+                    else if (btn_answers4.getText() == "ANSWER 4") btn_answers4.setText((String) answerMap.get(o));
+                    else if (btn_answers5.getText() == "ANSWER 5") btn_answers5.setText((String) answerMap.get(o));
+                }
             }
         }
     };
