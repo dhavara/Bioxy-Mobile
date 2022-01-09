@@ -135,7 +135,7 @@ public class QuizFragment extends Fragment {
             Log.d("AMOGUS: ", String.valueOf(soal.getSoals()));
             Soal.Soals resultSoal = soal.getSoals().get(0);
             if (soal != null) {
-                txt_soal.setText(resultSoal.getQuestion().replace("\n", System.getProperty("line.separator")));
+                txt_soal.setText(resultSoal.getQuestion().replace("\\n", ""));
                 if (resultSoal.getSoal_image() != null) {
                     Glide.with(getActivity()).load(Const.IMG_URL + "soal/" + resultSoal.getSoal_image()).into(img_soal);
                 }
