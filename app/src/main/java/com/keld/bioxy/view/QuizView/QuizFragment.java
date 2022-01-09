@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -100,11 +101,11 @@ public class QuizFragment extends Fragment {
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
-        int health = getArguments().getInt("health");
-        int difficulty_id = getArguments().getInt("difficulty_id");
-        int soal_number = getArguments().getInt("soal_number");
-        int soal_correct = getArguments().getInt("soal_correct");
-        int point = getArguments().getInt("point");
+        health = getArguments().getInt("health");
+        difficulty_id = getArguments().getInt("difficulty_id");
+        soal_number = getArguments().getInt("soal_number");
+        soal_correct = getArguments().getInt("soal_correct");
+        point = getArguments().getInt("point");
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
@@ -144,6 +145,108 @@ public class QuizFragment extends Fragment {
                 btn_answers3.setText(resultSoal.getAnswer_3());
                 btn_answers4.setText(resultSoal.getAnswer_4());
                 btn_answers5.setText(resultSoal.getAnswer_correct());
+
+                btn_answers1.setOnClickListener(v -> {
+                    health -= 1;
+                    soal_number += 1;
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("difficulty_id", difficulty_id);
+                    bundle.putInt("health", health);
+                    bundle.putInt("soal_number", soal_number);
+                    bundle.putInt("soal_correct", soal_correct);
+                    bundle.putInt("point", point);
+
+                    if (health == 0) {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
+                    }
+                    else {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
+                    }
+                });
+                btn_answers2.setOnClickListener(v -> {
+                    health -= 1;
+                    soal_number += 1;
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("difficulty_id", difficulty_id);
+                    bundle.putInt("health", health);
+                    bundle.putInt("soal_number", soal_number);
+                    bundle.putInt("soal_correct", soal_correct);
+                    bundle.putInt("point", point);
+
+                    if (health == 0) {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
+                    }
+                    else {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
+                    }
+                });
+                btn_answers3.setOnClickListener(v -> {
+                    health -= 1;
+                    soal_number += 1;
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("difficulty_id", difficulty_id);
+                    bundle.putInt("health", health);
+                    bundle.putInt("soal_number", soal_number);
+                    bundle.putInt("soal_correct", soal_correct);
+                    bundle.putInt("point", point);
+
+                    if (health == 0) {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
+                    }
+                    else {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
+                    }
+                });
+                btn_answers4.setOnClickListener(v -> {
+                    health -= 1;
+                    soal_number += 1;
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("difficulty_id", difficulty_id);
+                    bundle.putInt("health", health);
+                    bundle.putInt("soal_number", soal_number);
+                    bundle.putInt("soal_correct", soal_correct);
+                    bundle.putInt("point", point);
+
+                    if (health == 0) {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_to_quizResultFragment, bundle);
+                    }
+                    else {
+                        Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
+                    }
+                });
+                btn_answers5.setOnClickListener(v -> {
+                    soal_correct += 1;
+                    if (soal_correct % 5 == 0) {
+                        health += 1;
+                    }
+                    switch (difficulty_id) {
+                        case 1:
+                            point += 10;
+                            break;
+                        case 2:
+                            point += 10*2;
+                            break;
+                        case 3:
+                            point += 10*3;
+                            break;
+                        case 4:
+                            point += 10*5;
+                            break;
+                    }
+                    soal_number += 1;
+
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("difficulty_id", difficulty_id);
+                    bundle.putInt("health", health);
+                    bundle.putInt("soal_number", soal_number);
+                    bundle.putInt("soal_correct", soal_correct);
+                    bundle.putInt("point", point);
+                    Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
+                });
             }
         }
     };
