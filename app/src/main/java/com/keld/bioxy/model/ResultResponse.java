@@ -3,6 +3,8 @@ package com.keld.bioxy.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.gson.Gson;
+
 public class ResultResponse implements Parcelable {
     private String difficulty;
     private int point;
@@ -16,6 +18,19 @@ public class ResultResponse implements Parcelable {
         total_number = in.readInt();
     }
 
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(difficulty);
+        dest.writeInt(point);
+        dest.writeInt(total_correct);
+        dest.writeInt(total_number);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
     public static final Creator<ResultResponse> CREATOR = new Creator<ResultResponse>() {
         @Override
         public ResultResponse createFromParcel(Parcel in) {
@@ -27,6 +42,11 @@ public class ResultResponse implements Parcelable {
             return new ResultResponse[size];
         }
     };
+
+    public static ResultResponse objectFromData(String str) {
+
+        return new Gson().fromJson(str, ResultResponse.class);
+    }
 
     public String getDifficulty() {
         return difficulty;
@@ -58,18 +78,5 @@ public class ResultResponse implements Parcelable {
 
     public void setTotal_number(int total_number) {
         this.total_number = total_number;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(difficulty);
-        dest.writeInt(point);
-        dest.writeInt(total_correct);
-        dest.writeInt(total_number);
     }
 }
