@@ -101,9 +101,6 @@ public class QuizFragment extends Fragment {
         toolbar = getActivity().findViewById(R.id.toolbar_main);
         toolbar.setTitle("Quiz");
         toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setNavigationOnClickListener(v -> {
-            Toast.makeText(QuizFragment.this.requireActivity(), "Hayoo, mau ngecit yaaaa :V", Toast.LENGTH_SHORT).show();
-        });
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
         health = getArguments().getInt("health");
@@ -111,6 +108,12 @@ public class QuizFragment extends Fragment {
         soal_number = getArguments().getInt("soal_number");
         soal_correct = getArguments().getInt("soal_correct");
         point = getArguments().getInt("point");
+
+        toolbar.setNavigationOnClickListener(v -> {
+            Toast.makeText(QuizFragment.this.requireActivity(), "Hayoo, mau ngecit yaaaa :V -10 poin, jangan diulangi lagi", Toast.LENGTH_SHORT).show();
+            health -= 10;
+            txt_health.setText("Nyawa: " + health);
+        });
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
