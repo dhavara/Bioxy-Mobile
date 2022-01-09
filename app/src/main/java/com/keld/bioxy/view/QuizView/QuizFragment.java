@@ -231,20 +231,21 @@ public class QuizFragment extends Fragment {
                     if (soal_correct % 5 == 0) {
                         health += 1;
                     }
-                    switch (difficulty_id) {
-                        case 1:
-                            point += 10;
-                            break;
-                        case 2:
-                            point += 10*2;
-                            break;
-                        case 3:
-                            point += 10*3;
-                            break;
-                        case 4:
-                            point += 10*5;
-                            break;
-                    }
+                    point += 10;
+//                    switch (difficulty_id) {
+//                        case 1:
+//                            point += 10;
+//                            break;
+//                        case 2:
+//                            point += 10*2;
+//                            break;
+//                        case 3:
+//                            point += 10*3;
+//                            break;
+//                        case 4:
+//                            point += 10*5;
+//                            break;
+//                    }
                     soal_number += 1;
 
                     Bundle bundle = new Bundle();
