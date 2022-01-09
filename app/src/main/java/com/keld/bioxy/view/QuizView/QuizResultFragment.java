@@ -121,12 +121,16 @@ public class QuizResultFragment extends Fragment {
                 difficulty = "Sangat Sulit";
         }
 
-
-
         helper = SharedPreferenceHelper.getInstance(requireActivity());
         quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
         quizViewModel.init(helper.getAccessToken());
-        quizViewModel.result(difficulty, point, soal_correct, soal_number);
+        quizViewModel.result(difficulty, point, soal_correct, soal_number).observe(requireActivity(), resultResponse -> {
+            if (resultResponse != null){
+                Toast.makeText(requireActivity(), "Sukses! Data telah tersimpan.", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(requireActivity(), "Gagal!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         btn_result_leaderboard.setOnClickListener(v1 -> {
             Bundle bundle = new Bundle();
