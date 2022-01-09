@@ -7,10 +7,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.keld.bioxy.R;
 
@@ -21,6 +24,9 @@ import com.keld.bioxy.R;
  */
 public class QuizResultFragment extends Fragment {
     Toolbar toolbar;
+    private Button btn_result_leaderboard, btn_back;
+    private TextView txt_accuracyPercent, txt_correct, txt_score;
+    private int health, difficulty_id, soal_number, soal_correct, point;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -75,5 +81,30 @@ public class QuizResultFragment extends Fragment {
         toolbar = getActivity().findViewById(R.id.toolbar_main);
         toolbar.setTitle("Quiz Result");
         toolbar.setTitleTextColor(Color.WHITE);
+
+        txt_accuracyPercent = view.findViewById(R.id.txt_accuracyPercent);
+        txt_correct = view.findViewById(R.id.txt_correct);
+        txt_score = view.findViewById(R.id.txt_score);
+        btn_result_leaderboard = view.findViewById(R.id.btn_result_leaderboard);
+        btn_back = view.findViewById(R.id.btn_back);
+
+        health = getArguments().getInt("health");
+        difficulty_id = getArguments().getInt("difficulty_id");
+        soal_number = getArguments().getInt("soal_number");
+        soal_correct = getArguments().getInt("soal_correct");
+        point = getArguments().getInt("point");
+
+        txt_accuracyPercent.setText((soal_number/soal_correct*100)+"%");
+        txt_correct.setText(soal_correct+"");
+        txt_score.setText(point+"");
+
+        btn_result_leaderboard.setOnClickListener(v1 -> {
+            Bundle bundle = new Bundle();
+            Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_leaderboardFragment, bundle);
+        });
+        btn_back.setOnClickListener(v1 -> {
+            Bundle bundle = new Bundle();
+            Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_difficultyFragment2, bundle);
+        });
     }
 }
