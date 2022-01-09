@@ -81,7 +81,7 @@ public class RetrofitService {
         return api.getFrameDetail(id);
     }
 
-    public Call<ResultResponse> result(String difficulty, int point, int total_correct, int total_number) { return api.result(difficulty, point, total_correct, total_number); }
+    public Call<ResultResponse> result(String difficulty, int point, int total_correct, int total_question) { return api.result(difficulty, point, total_correct, total_question); }
 
     public Call<JsonObject> logout() {
         return api.logout();

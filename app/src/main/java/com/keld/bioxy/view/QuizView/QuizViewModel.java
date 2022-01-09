@@ -48,8 +48,8 @@ public class QuizViewModel extends AndroidViewModel {
     public LiveData<Difficulty> getResultDifficulties(){return resultDifficulty;}
 
     //==Begin of view model to Store Quiz Result
-    public MutableLiveData<ResultResponse> result(String difficulty, int point, int total_correct, int total_number) {
-        return quizRepository.result(difficulty, point, total_correct, total_number);
+    public MutableLiveData<ResultResponse> result(String difficulty, int point, int total_correct, int total_question) {
+        return quizRepository.result(difficulty, point, total_correct, total_question);
     }
 
     @Override

@@ -80,14 +80,14 @@ public class QuizRepository {
         return listUser;
     }
 
-    public MutableLiveData<ResultResponse> result(String difficulty, int point, int total_correct, int total_number) {
-        final MutableLiveData<ResultResponse> listResult = new MutableLiveData<>();
-        apiService.result(difficulty, point, total_correct, total_number).enqueue(new Callback<ResultResponse>() {
+    public MutableLiveData<ResultResponse> result(String difficulty, int point, int total_correct, int total_question) {
+        final MutableLiveData<ResultResponse> resultResponse = new MutableLiveData<>();
+        apiService.result(difficulty, point, total_correct, total_question).enqueue(new Callback<ResultResponse>() {
             @Override
             public void onResponse(Call<ResultResponse> call, Response<ResultResponse> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-                        listResult.postValue(response.body());
+                        resultResponse.postValue(response.body());
                     }
                 }
             }
@@ -97,6 +97,6 @@ public class QuizRepository {
 
             }
         });
-        return listResult;
+        return resultResponse;
     }
 }

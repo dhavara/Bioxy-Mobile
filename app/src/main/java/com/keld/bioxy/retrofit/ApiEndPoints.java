@@ -42,7 +42,7 @@ public interface ApiEndPoints {
     Call<ResultResponse> result(@Field("difficulty") String difficulty,
                                   @Field("point") int point,
                                   @Field("total_correct") int total_correct,
-                                  @Field("total_number") int total_number);
+                                  @Field("total_question") int total_question);
 
     @POST("logout")
     Call<JsonObject> logout();
