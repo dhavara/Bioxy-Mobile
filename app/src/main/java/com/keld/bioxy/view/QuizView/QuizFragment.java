@@ -20,12 +20,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.keld.bioxy.R;
 import com.keld.bioxy.helper.Const;
 import com.keld.bioxy.helper.SharedPreferenceHelper;
 import com.keld.bioxy.model.Soal;
+import com.keld.bioxy.view.LoginView.LoginFragment;
 import com.keld.bioxy.view.ProfileView.ProfileViewModel;
 
 import java.util.Random;
@@ -99,6 +101,9 @@ public class QuizFragment extends Fragment {
         toolbar = getActivity().findViewById(R.id.toolbar_main);
         toolbar.setTitle("Quiz");
         toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setNavigationOnClickListener(v -> {
+            Toast.makeText(QuizFragment.this.requireActivity(), "Hayoo, mau ngecit yaaaa :V", Toast.LENGTH_SHORT).show();
+        });
         toolbar.getNavigationIcon().setColorFilter(getResources().getColor(R.color.white), PorterDuff.Mode.SRC_ATOP);
 
         health = getArguments().getInt("health");
