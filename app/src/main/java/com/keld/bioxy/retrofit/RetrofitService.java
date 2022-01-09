@@ -80,6 +80,8 @@ public class RetrofitService {
         return api.getFrameDetail(id);
     }
 
+    public Call<Leaderboard.Leaderboards> createHistory(Leaderboard.Leaderboards leaderboards) { return api.createHistory(leaderboards); }
+
     public Call<JsonObject> logout() {
         return api.logout();
     }

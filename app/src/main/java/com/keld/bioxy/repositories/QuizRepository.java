@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 
 import com.keld.bioxy.model.Difficulty;
+import com.keld.bioxy.model.Leaderboard;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.User;
 import com.keld.bioxy.retrofit.RetrofitService;
@@ -76,5 +77,25 @@ public class QuizRepository {
         });
 
         return listUser;
+    }
+
+    public MutableLiveData<Leaderboard.Leaderboards> createHistory(Leaderboard.Leaderboards leaderboards) {
+        final MutableLiveData<Leaderboard.Leaderboards> listAddHistory = new MutableLiveData<>();
+        apiService.createHistory(leaderboards).enqueue(new Callback<Leaderboard.Leaderboards>() {
+            @Override
+            public void onResponse(Call<Leaderboard.Leaderboards> call, Response<Leaderboard.Leaderboards> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        listAddHistory.postValue(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Leaderboard.Leaderboards> call, Throwable t) {
+
+            }
+        });
+        return listAddHistory;
     }
 }

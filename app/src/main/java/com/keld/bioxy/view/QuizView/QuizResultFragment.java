@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.keld.bioxy.R;
+import com.keld.bioxy.helper.SharedPreferenceHelper;
+import com.keld.bioxy.model.Leaderboard;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,10 +26,14 @@ import com.keld.bioxy.R;
  * create an instance of this fragment.
  */
 public class QuizResultFragment extends Fragment {
+    private QuizViewModel quizViewModel;
+    private SharedPreferenceHelper helper;
+
     Toolbar toolbar;
     private Button btn_result_leaderboard, btn_back;
     private TextView txt_accuracyPercent, txt_correct, txt_score;
     private int health, difficulty_id, soal_number, soal_correct, point;
+    private String difficulty;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -98,6 +105,27 @@ public class QuizResultFragment extends Fragment {
         txt_correct.setText(soal_correct+"");
         txt_score.setText(point+"");
 
+        switch (difficulty_id) {
+            case 1:
+                difficulty = "Mudah";
+                break;
+            case 2:
+                difficulty = "Sedang";
+                break;
+            case 3:
+                difficulty = "Sulit";
+                break;
+            case 4:
+                difficulty = "Sangat Sulit";
+        }
+        Leaderboard.Leaderboards leaderboards = addData(difficulty, point, soal_correct, soal_number);
+
+
+        helper = SharedPreferenceHelper.getInstance(requireActivity());
+        quizViewModel = new ViewModelProvider(getActivity()).get(QuizViewModel.class);
+        quizViewModel.init(helper.getAccessToken());
+        quizViewModel.createHistory(leaderboards);
+
         btn_result_leaderboard.setOnClickListener(v1 -> {
             Bundle bundle = new Bundle();
             Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_leaderboardFragment, bundle);
@@ -106,5 +134,9 @@ public class QuizResultFragment extends Fragment {
             Bundle bundle = new Bundle();
             Navigation.findNavController(v1).navigate(R.id.action_quizResultFragment2_to_difficultyFragment2, bundle);
         });
+    }
+    private Leaderboard.Leaderboards addData(String difficulty, int point, int soal_correct, int soal_number) {
+        Leaderboard.Leaderboards leaderboards = new Leaderboard.Leaderboards(difficulty, point, soal_correct, soal_number);
+        return leaderboards;
     }
 }

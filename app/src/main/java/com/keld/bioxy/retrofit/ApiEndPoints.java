@@ -9,6 +9,7 @@ import com.keld.bioxy.model.TokenResponse;
 import com.keld.bioxy.model.User;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -34,6 +35,9 @@ public interface ApiEndPoints {
 
     @GET("frames/{id}")
     Call<Frame> getFrameDetail (@Path("id") int id); //id frame
+
+    @POST("quiz/store")
+    Call<Leaderboard.Leaderboards> createHistory(@Body Leaderboard.Leaderboards leaderboard);
 
     @POST("logout")
     Call<JsonObject> logout();

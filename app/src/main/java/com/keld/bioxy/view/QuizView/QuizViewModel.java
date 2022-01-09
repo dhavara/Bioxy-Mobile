@@ -9,6 +9,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.keld.bioxy.model.Difficulty;
+import com.keld.bioxy.model.Leaderboard;
 import com.keld.bioxy.model.Soal;
 import com.keld.bioxy.model.User;
 import com.keld.bioxy.repositories.DifficultyRepository;
@@ -44,11 +45,9 @@ public class QuizViewModel extends AndroidViewModel {
     public LiveData<Difficulty> getResultDifficulties(){return resultDifficulty;}
 
     //==Begin of view model to Store Quiz Result
-    private MutableLiveData<User> resultUser = new MutableLiveData<>();
-    public void getUser(int id){
-        resultUser = quizRepository.getUser(id);
+    public MutableLiveData<Leaderboard.Leaderboards> createHistory(Leaderboard.Leaderboards leaderboards) {
+        return quizRepository.createHistory(leaderboards);
     }
-    public LiveData<User> getResultUser(){return resultUser;}
 
     @Override
     protected void onCleared() {
