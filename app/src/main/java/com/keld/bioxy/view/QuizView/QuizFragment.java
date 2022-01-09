@@ -111,8 +111,8 @@ public class QuizFragment extends Fragment {
 
         toolbar.setNavigationOnClickListener(v -> {
             Toast.makeText(QuizFragment.this.requireActivity(), "Hayoo, mau ngecit yaaaa :V -10 poin, jangan diulangi lagi", Toast.LENGTH_SHORT).show();
-            health -= 10;
-            txt_health.setText("Nyawa: " + health);
+            point -= 10;
+            txt_point.setText("Poin: " + point);
         });
 
         helper = SharedPreferenceHelper.getInstance(requireActivity());
