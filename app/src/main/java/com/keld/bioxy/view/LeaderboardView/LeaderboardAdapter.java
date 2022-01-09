@@ -20,6 +20,7 @@ import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.CardViewViewHolder> {
     private Context context;
+    private int ranking = 1;
     private List<Leaderboard.Leaderboards> leaderboardsList;
 
     public LeaderboardAdapter(Context context) {
@@ -43,12 +44,10 @@ public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.
     @Override
     public void onBindViewHolder(@NonNull CardViewViewHolder holder, int position) {
         final Leaderboard.Leaderboards results = getLeaderboardsList().get(position);
-        int ranking = 0;
         if (results.getDifficulty().equals("Mudah")) {
-            if (ranking == 0) {
-                ranking = 1;
+            if (position == 1) {
+                ranking += 1;
             }
-            ranking += 1;
         }
         if (results.getDifficulty().equals("Sedang")) {
             if (getLeaderboardsList().get(position-1).getDifficulty().equals("Mudah")) {
