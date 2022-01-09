@@ -20,7 +20,7 @@ import java.util.List;
 
 public class LeaderboardAdapter extends RecyclerView.Adapter<LeaderboardAdapter.CardViewViewHolder> {
     private Context context;
-    private int ranking = 1;
+    private int ranking = 0;
     private List<Leaderboard.Leaderboards> leaderboardsList;
 
     public LeaderboardAdapter(Context context) {
