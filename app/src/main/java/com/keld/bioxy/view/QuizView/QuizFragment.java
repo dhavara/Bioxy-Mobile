@@ -160,7 +160,6 @@ public class QuizFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
                     bundle.putInt("health", health);
-                    bundle.putInt("soal_number", soal_number);
                     bundle.putInt("soal_correct", soal_correct);
                     bundle.putInt("point", point);
 
@@ -169,6 +168,7 @@ public class QuizFragment extends Fragment {
                     }
                     else {
                         soal_number += 1;
+                        bundle.putInt("soal_number", soal_number);
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });
@@ -178,7 +178,6 @@ public class QuizFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
                     bundle.putInt("health", health);
-                    bundle.putInt("soal_number", soal_number);
                     bundle.putInt("soal_correct", soal_correct);
                     bundle.putInt("point", point);
 
@@ -187,6 +186,7 @@ public class QuizFragment extends Fragment {
                     }
                     else {
                         soal_number += 1;
+                        bundle.putInt("soal_number", soal_number);
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });
@@ -214,7 +214,6 @@ public class QuizFragment extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putInt("difficulty_id", difficulty_id);
                     bundle.putInt("health", health);
-                    bundle.putInt("soal_number", soal_number);
                     bundle.putInt("soal_correct", soal_correct);
                     bundle.putInt("point", point);
 
@@ -223,6 +222,7 @@ public class QuizFragment extends Fragment {
                     }
                     else {
                         soal_number += 1;
+                        bundle.putInt("soal_number", soal_number);
                         Navigation.findNavController(v).navigate(R.id.action_quizFragment2_self, bundle);
                     }
                 });
