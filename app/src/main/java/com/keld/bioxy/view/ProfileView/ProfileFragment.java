@@ -159,10 +159,10 @@ public class ProfileFragment extends Fragment {
                 tv_input_school.setText(resultUser.getSchool());
                 tv_input_city.setText(resultUser.getCity());
                 tv_input_birthdate.setText(resultUser.getBirthdate());
-                if (resultUser.getDetails().getUser_image() == null) {
-                    Glide.with(getActivity()).load(Const.IMG_URL + "null.png").into(img_profile);
-                } else {
+                if (resultUser.getDetails().getUser_image() != null) {
                     Glide.with(getActivity()).load(Const.IMG_URL + "user/" + resultUser.getDetails().getUser_image()).into(img_profile);
+                } else {
+                    Glide.with(getActivity()).load(Const.IMG_URL + "null.png").into(img_profile);
                 }
                 frameId = resultUser.getDetails().getUser_frame();
 //                if (resultUser.getDetails().getUser_image() != null) {
